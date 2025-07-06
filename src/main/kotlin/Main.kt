@@ -7,7 +7,7 @@ fun main() {
     println("start Kotlin WAS!")
 
     val server = ServerSocket(8080)
-    val threadPool = Executors.newFixedThreadPool(4)
+    val threadPool = Executors.newFixedThreadPool(10)
 
     while (true) {
         val client = server.accept()
@@ -17,12 +17,12 @@ fun main() {
                 val output = it.getOutputStream().bufferedWriter()
 
                 val requestLine = input.readLine()
-                println("📥 Request: $requestLine")
+                println("Request: $requestLine")
 
                 val response = """
                     HTTP/1.1 200 OK
                     Content-Type: text/plain
-                    Content-Length: 20
+                    Content-Length: 30
 
                     Hello from Kotlin WAS
                 """.trimIndent()
